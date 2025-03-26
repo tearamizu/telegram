@@ -14,10 +14,11 @@ class ChatList extends StatelessWidget{
         itemCount: chatData.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.only(bottom: 8),
+            padding: const EdgeInsets.symmetric(vertical: 4),
             child: Column(
               children: [
                 InkWell(
+                  hoverColor: appColor.invisible,
                   onTap: () {},
                   child: ListTile(
                     leading: SizedBox(
@@ -44,6 +45,10 @@ class ChatList extends StatelessWidget{
                       })(),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: appColor.grey,
+                        fontSize: 15,
+                      ),
                     ),
                     trailing: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -59,7 +64,27 @@ class ChatList extends StatelessWidget{
                             fontSize: 15,
                           ),
                         ),
-                        if(chatData[index]['is_pinned'] == true)
+                        SizedBox(height: 0.25),
+                        if(((chatData[index]['unread_messages'] ?? 0) as int) >= 1)
+                          Stack(
+                            alignment: Alignment.center,
+                            children: [
+                            Icon(
+                              Icons.circle,
+                              color: appColor.green,
+                              size: 24,
+                              weight: 1
+                            ),
+                            Text(
+                              chatData[index]['unread_messages'].toString(),
+                              style: TextStyle(
+                                color: appColor.white,
+                                fontSize: 16,
+                              ),
+                            ),
+                            ]
+                          )
+                        else if(chatData[index]['is_pinned'] == true)
                           Stack(
                             alignment: Alignment.center,
                             children: [

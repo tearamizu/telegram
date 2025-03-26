@@ -6,6 +6,7 @@ class AppColor {
   final black = Colors.black;
   final grey = Colors.grey;
   final lightGray = Colors.grey[300];
+  final green = Color.fromARGB(255, 78, 204, 93);
   final primary = const Color.fromARGB(255, 83, 124, 163);
 
   /*

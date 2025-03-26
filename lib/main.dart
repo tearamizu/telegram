@@ -12,6 +12,7 @@ class Telegram extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      title: 'Telegram',
       home: HomePages(),
       routes: {
         '/home': (context) => HomePages(),

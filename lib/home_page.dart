@@ -27,6 +27,8 @@ class _HomePagesState extends State<HomePages> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Telegram',
       home: Scaffold(
         appBar: AppBar(
           iconTheme: IconThemeData(
@@ -52,6 +54,11 @@ class _HomePagesState extends State<HomePages> {
           ],
         ),
         drawer: Drawer(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(0)
+            ),
+          ),
           backgroundColor: appColor.white,
           child: Column(
             children: [
@@ -75,7 +82,7 @@ class _HomePagesState extends State<HomePages> {
                         GestureDetector(
                           onTap: () {
                             setState(() {
-                              _isExpanded = !_isExpanded; // Toggle dropdown
+                              _isExpanded = !_isExpanded;
                             });
                           },
                           child: Row(
@@ -113,19 +120,57 @@ class _HomePagesState extends State<HomePages> {
                     ),
                     Align(
                       alignment: Alignment.topRight,
-                      child: Icon(
-                        Icons.nightlight_round,
-                        color: appColor.white,
-                        size: 24,
-                      ),
+                      child: Transform.rotate(
+                        angle: -2.4,
+                        child: Icon(
+                              Icons.nightlight_round,
+                              color: appColor.white,
+                              size: 24,
+                            ),
+                      )
                     ),
                   ],
                 ),
               ),
               if (_isExpanded)
-                ListTile(
-                  //IMPLEMENTASIKAN LIST STYLE BUAT LIST AKUN
-                ),
+              Column(
+                children: [
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                        'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg',
+                      ),
+                      maxRadius: 16,
+                    ),
+                    title: Text(
+                      'Yeremia Christian C. O.',
+                      style: TextStyle(
+                        color: appColor.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    onTap: () {},
+                  ),
+                  ListTile(
+                    leading: Icon(
+                      Icons.add
+                    ),
+                    title: Text(
+                      'Add Account',
+                      style: TextStyle(
+                        color: appColor.black,
+                        fontSize: 18,
+                      ),
+                    ),
+                    onTap: () {},
+                  ),
+                  Divider(
+                    color: appColor.lightGray,
+                    height: 1,
+                  ),
+                ]
+              ),
               ListTile(
                 leading: Icon(
                   Icons.account_circle_outlined,

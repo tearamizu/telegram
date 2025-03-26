@@ -3,6 +3,7 @@ const chatData = [
     'name': 'Ridho Es Batu 48',
     'profilePicture': 'https://www.socialketchup.in/wp-content/uploads/2020/05/fi-vill-JOHN-DOE.jpg',
     'is_pinned': true,
+    'unread_messages': 0,
     'messages' : [
       {"isMe": true, "text": "Dhows", "time": "11:00 AM"},
       {"isMe": false, "text": "Opo?", "time": "11:01 AM"},
@@ -25,6 +26,7 @@ const chatData = [
     'name': 'Marcellino',
     'profilePicture': 'https://www.socialketchup.in/wp-content/uploads/2020/05/fi-vill-JOHN-DOE.jpg',
     'is_pinned': false,
+    'unread_messages': 3,
     'messages' : [
       {"isMe": true, "text": "Dhows", "time": "11:00 AM"},
       {"isMe": false, "text": "Opo?", "time": "11:01 AM"},
