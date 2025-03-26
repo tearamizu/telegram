@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:telegram/app_color.dart';
+import 'package:telegram/chat_page.dart';
 import 'package:telegram/data/chat_data.dart';
 
 class ChatList extends StatelessWidget{
@@ -19,7 +20,14 @@ class ChatList extends StatelessWidget{
               children: [
                 InkWell(
                   hoverColor: appColor.invisible,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ChatPage(chatData: chatData[index])
+                      )
+                    );
+                  },
                   child: ListTile(
                     leading: SizedBox(
                       width: 60,

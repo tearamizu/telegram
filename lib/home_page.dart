@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:telegram/app_color.dart';
 import 'package:telegram/chat_list.dart';
 
-class HomePages extends StatefulWidget{
-  const HomePages({super.key});
+class HomePage extends StatefulWidget{
+  const HomePage({super.key});
 
   @override
-  State<HomePages> createState() => _HomePagesState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePagesState extends State<HomePages> {
+class _HomePageState extends State<HomePage> {
   final AppColor appColor = AppColor();
   bool _isLoading = true;
   bool _isExpanded = false;

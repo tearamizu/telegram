@@ -13,10 +13,14 @@ class Telegram extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Telegram',
-      home: HomePages(),
+      home: HomePage(),
+      /*
+      Ini rutenya nggak bisa, nanti kita perbaiki kalau sempat
       routes: {
-        '/home': (context) => HomePages(),
+        '/homepage': (context) => HomePage(),
+        '/chatpage': (context) => ChatPage(chatData: ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>),
       },
+      */
     );
   }
 }
