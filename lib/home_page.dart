@@ -2,10 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:telegram/app_color.dart';
 import 'package:telegram/chat_list.dart';
 
-class HomePages extends StatelessWidget{
-  HomePages({super.key});
-  final AppColor appColor = AppColor();
+class HomePages extends StatefulWidget{
+  const HomePages({super.key});
 
+  @override
+  State<HomePages> createState() => _HomePagesState();
+}
+
+class _HomePagesState extends State<HomePages> {
+  final AppColor appColor = AppColor();
+  bool _isLoading = true;
+  bool _isExpanded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    //Nyobain loading 5 detik
+    Future.delayed(Duration(seconds: 5), () {
+      setState(() {
+        _isLoading = false;
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,7 +33,7 @@ class HomePages extends StatelessWidget{
             color: appColor.white,
           ),
           title: Text(
-            'Telegram',
+            _isLoading ? 'Connecting...' : 'Telegram',
             style: TextStyle(
               color: appColor.white,
               fontSize: 24,
@@ -41,38 +59,73 @@ class HomePages extends StatelessWidget{
                 decoration: BoxDecoration(
                   color: appColor.primary,
                 ),
-                child: Row(
+                child: Stack(
                   children: [
-                    CircleAvatar(
-                      radius: 30,
-                      backgroundImage: NetworkImage('https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'),
-                    ),
-                    SizedBox(width: 10),
                     Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Yeremia Christian C.O.',
-                          style: TextStyle(
-                            color: appColor.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                        CircleAvatar(
+                          radius: 30,
+                          backgroundImage: NetworkImage(
+                            'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg',
                           ),
                         ),
-                        Text(
-                          '+62 812 xxxx xxxxx',
-                          style: TextStyle(
-                            color: appColor.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                        SizedBox(width: 10),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _isExpanded = !_isExpanded; // Toggle dropdown
+                            });
+                          },
+                          child: Row(
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Yeremia Christian C. O.',
+                                    style: TextStyle(
+                                      color: appColor.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    '+62 812 5942 xxxx',
+                                    style: TextStyle(
+                                      color: appColor.white,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Spacer(),
+                              Icon(
+                                _isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+                                color: appColor.white,
+                              ),
+                            ],
                           ),
-                        )
+                        ),
                       ],
-                    )
+                    ),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Icon(
+                        Icons.nightlight_round,
+                        color: appColor.white,
+                        size: 24,
+                      ),
+                    ),
                   ],
                 ),
               ),
+              if (_isExpanded)
+                ListTile(
+                  //IMPLEMENTASIKAN LIST STYLE BUAT LIST AKUN
+                ),
               ListTile(
                 leading: Icon(
                   Icons.account_circle_outlined,
