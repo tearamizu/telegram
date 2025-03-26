@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:telegram/app_color.dart';
+import 'package:telegram/chat_list.dart';
 
 class HomePages extends StatelessWidget{
   HomePages({super.key});
@@ -195,13 +196,7 @@ class HomePages extends StatelessWidget{
             ],
           ),
         ),
-        body: ListView(
-          children: [
-            Text(
-              'Tilijram'
-            )
-          ],
-        ),
+        body: ChatList(),
         floatingActionButton: FloatingActionButton(
           onPressed: (){},
           backgroundColor: appColor.primary,

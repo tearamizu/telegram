@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AppColor {
-  final white = Colors.white;
+  final invisible = Colors.transparent;
+  final white = Color.fromARGB(255, 255, 255, 255);
   final black = Colors.black;
   final grey = Colors.grey;
   final lightGray = Colors.grey[300];
