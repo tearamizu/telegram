@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:telegram/app_color.dart';
 
-class ChatPage extends StatefulWidget{
+class ChatPage extends StatefulWidget {
   final Map<String, dynamic> chatData;
 
-  ChatPage({super.key, required this.chatData});
+  const ChatPage({super.key, required this.chatData});
 
   @override
   State<ChatPage> createState() => _ChatPageState();
@@ -21,6 +21,7 @@ class _ChatPageState extends State<ChatPage> {
       _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,16 +30,15 @@ class _ChatPageState extends State<ChatPage> {
           title: Row(
             children: [
               IconButton(
-                icon: Icon(
-                  Icons.arrow_back,
-                  color: appColor.white,
-                ),
+                icon: Icon(Icons.arrow_back, color: appColor.white),
                 onPressed: () {
                   Navigator.pop(context);
                 },
               ),
               CircleAvatar(
-                backgroundImage: NetworkImage(widget.chatData['profilePicture'].toString()),
+                backgroundImage: NetworkImage(
+                  widget.chatData['profilePicture'].toString(),
+                ),
               ),
               SizedBox(width: 10),
               Column(
@@ -57,11 +57,11 @@ class _ChatPageState extends State<ChatPage> {
                     style: TextStyle(
                       color: appColor.lightGray,
                       fontSize: 18,
-                      fontWeight: FontWeight.w400
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                 ],
-              )
+              ),
             ],
           ),
           backgroundColor: appColor.primary,
@@ -74,106 +74,165 @@ class _ChatPageState extends State<ChatPage> {
           ],
         ),
         body: Container(
-          decoration: BoxDecoration(
-            gradient: appColor.linearGradientBlue,
-          ),
+          decoration: BoxDecoration(gradient: appColor.linearGradientBlue),
           child: ListView.builder(
             controller: _scrollController,
-            itemCount: widget.chatData['messages'].length ,
+            itemCount: widget.chatData['messages'].length,
             itemBuilder: (context, index) {
               final message = widget.chatData['messages'][index];
-              final nextMessage = (index + 1 < widget.chatData['messages'].length)
-              ? widget.chatData['messages'][index + 1]
-              : null;
+              final nextMessage =
+                  (index + 1 < widget.chatData['messages'].length)
+                      ? widget.chatData['messages'][index + 1]
+                      : null;
               bool chainedMessage = false;
-              if (nextMessage != null && (message['isMe'] as bool) == (nextMessage['isMe'] as bool)) {
+              if (nextMessage != null &&
+                  (message['isMe'] as bool) == (nextMessage['isMe'] as bool)) {
                 chainedMessage = true;
               }
               final isMe = message['isMe'] == true;
-            
+
               return Align(
-                alignment: isMe? Alignment.centerRight : Alignment.centerLeft,
+                alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
                 child: Container(
-                  margin: chainedMessage ?  EdgeInsets.symmetric(horizontal: 5) : EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 11),
+                  margin:
+                      chainedMessage
+                          ? EdgeInsets.only(right: 5, left: 5, bottom: 1)
+                          : EdgeInsets.only(right: 5, left: 5, bottom: 8),
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   decoration: BoxDecoration(
-                    color: isMe? appColor.myBubbleChat : appColor.white,
-                    borderRadius: BorderRadius.circular(13),
+                    color: isMe ? appColor.myBubbleChat : appColor.white,
+                    borderRadius:
+                        isMe
+                            ? BorderRadius.only(
+                              bottomRight: Radius.circular(5),
+                              topRight: Radius.circular(15),
+                              bottomLeft: Radius.circular(15),
+                              topLeft: Radius.circular(15),
+                            )
+                            : BorderRadius.only(
+                              bottomRight: Radius.circular(15),
+                              topRight: Radius.circular(15),
+                              bottomLeft: Radius.circular(3),
+                              topLeft: Radius.circular(15),
+                            ),
                   ),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       if ((message['text'].length) as int <= 11)
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            message['text'].toString(),
-                            style: TextStyle(
-                              color: appColor.black,
-                              fontSize: 16,
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              message['text'].toString(),
+                              style: TextStyle(
+                                color: appColor.black,
+                                fontSize: 16,
                               ),
-                          ),
-                          SizedBox(width: 5),
-                          Text(
-                            message['time'].toString(),
-                            style: TextStyle(
-                              color: appColor.grey,
-                              fontSize: 12,
                             ),
-                          ),
-                          SizedBox(width: 5),
-                          if(isMe)
-                          Icon(
-                              Icons.done_all,
-                              color: appColor.readedIndicator,
-                              size: 14,
-                            )
-                        ],
-                      )
-                      else
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            message['text'].toString(),
-                            style: TextStyle(
-                              color: appColor.black,
-                              fontSize: 16,
+                            SizedBox(width: 5),
+                            Text(
+                              message['time'].toString(),
+                              style: TextStyle(
+                                color: appColor.grey,
+                                fontSize: 12,
                               ),
-                          ),
-                          SizedBox(height: 5),
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                message['time'].toString(),
-                                style: TextStyle(
-                                  color: appColor.grey,
-                                  fontSize: 12,
-                                ),
-                              ),
-                              SizedBox(width: 5),
-                              if(isMe)
+                            ),
+                            SizedBox(width: 5),
+                            if (isMe)
                               Icon(
-                                  Icons.done_all,
-                                  color: appColor.readedIndicator,
-                                  size: 14,
-                                )
-                            ],
-                          )
-                        ],
-                      ),
+                                Icons.done_all,
+                                color: appColor.readedIndicator,
+                                size: 14,
+                              ),
+                          ],
+                        )
+                      else
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              message['text'].toString(),
+                              style: TextStyle(
+                                color: appColor.black,
+                                fontSize: 16,
+                              ),
+                            ),
+                            SizedBox(height: 5),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  message['time'].toString(),
+                                  style: TextStyle(
+                                    color: appColor.grey,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                SizedBox(width: 5),
+                                if (isMe)
+                                  Icon(
+                                    Icons.done_all,
+                                    color: appColor.readedIndicator,
+                                    size: 14,
+                                  ),
+                              ],
+                            ),
+                          ],
+                        ),
                     ],
                   ),
                 ),
               );
             },
           ),
-        )
+        ),
+        bottomNavigationBar: SafeArea(
+          maintainBottomViewPadding: true,
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            decoration: BoxDecoration(
+              color: appColor.white,
+              border: Border(
+                top: BorderSide(
+                  color: (appColor.lightGray as Color),
+                  width: 0.5,
+                ),
+              ),
+            ),
+            child: Row(
+              children: [
+                IconButton(
+                  icon: Icon(
+                    Icons.emoji_emotions_outlined,
+                    color: appColor.grey,
+                  ),
+                  onPressed: () {},
+                ),
+                Expanded(
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Type a message',
+                      hintStyle: TextStyle(color: appColor.grey),
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(Icons.attach_file, color: appColor.grey),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: Icon(Icons.camera_alt, color: appColor.grey),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
