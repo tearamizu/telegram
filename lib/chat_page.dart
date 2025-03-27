@@ -25,7 +25,7 @@ class _ChatPageState extends State<ChatPage> {
     });
 
     _textController.addListener(() {
-      setState (() {});
+      setState(() {});
     });
   }
 
@@ -257,24 +257,21 @@ class _ChatPageState extends State<ChatPage> {
                         Transform.rotate(
                           angle: -2.4,
                           child: IconButton(
-                            icon: Icon(
-                              Icons.attach_file,
-                              color: appColor.grey
-                            ),
+                            icon: Icon(Icons.attach_file, color: appColor.grey),
                             onPressed: () {},
                           ),
                         ),
                         IconButton(
                           icon: Icon(
                             Icons.camera_alt_rounded,
-                            color: appColor.grey
+                            color: appColor.grey,
                           ),
                           onPressed: () {},
                         ),
                       ] else
                         IconButton(
-                          onPressed: (){},
-                          icon: Icon(Icons.send, color: appColor.primary)
+                          onPressed: () {},
+                          icon: Icon(Icons.send, color: appColor.primary),
                         ),
                     ],
                   ),

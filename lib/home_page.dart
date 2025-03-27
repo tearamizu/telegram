@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:telegram/app_color.dart';
 import 'package:telegram/chat_list.dart';
 
-class HomePage extends StatefulWidget{
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
       });
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,9 +32,7 @@ class _HomePageState extends State<HomePage> {
       title: 'Telegram',
       home: Scaffold(
         appBar: AppBar(
-          iconTheme: IconThemeData(
-            color: appColor.white,
-          ),
+          iconTheme: IconThemeData(color: appColor.white),
           title: Text(
             _isLoading ? 'Connecting...' : 'Telegram',
             style: TextStyle(
@@ -45,27 +44,20 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: appColor.primary,
           actions: [
             IconButton(
-              icon: Icon(
-                Icons.search,
-                color: appColor.white,
-              ),
-              onPressed: (){},
+              icon: Icon(Icons.search, color: appColor.white),
+              onPressed: () {},
             ),
           ],
         ),
         drawer: Drawer(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(0)
-            ),
+            borderRadius: BorderRadius.all(Radius.circular(0)),
           ),
           backgroundColor: appColor.white,
           child: Column(
             children: [
               DrawerHeader(
-                decoration: BoxDecoration(
-                  color: appColor.primary,
-                ),
+                decoration: BoxDecoration(color: appColor.primary),
                 child: Stack(
                   children: [
                     Column(
@@ -110,7 +102,9 @@ class _HomePageState extends State<HomePage> {
                               ),
                               Spacer(),
                               Icon(
-                                _isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+                                _isExpanded
+                                    ? Icons.keyboard_arrow_up
+                                    : Icons.keyboard_arrow_down,
                                 color: appColor.white,
                               ),
                             ],
@@ -123,54 +117,46 @@ class _HomePageState extends State<HomePage> {
                       child: Transform.rotate(
                         angle: -2.4,
                         child: Icon(
-                              Icons.nightlight_round,
-                              color: appColor.white,
-                              size: 24,
-                            ),
-                      )
+                          Icons.nightlight_round,
+                          color: appColor.white,
+                          size: 24,
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ),
               if (_isExpanded)
-              Column(
-                children: [
-                  ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage(
-                        'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg',
+                Column(
+                  children: [
+                    ListTile(
+                      leading: CircleAvatar(
+                        backgroundImage: NetworkImage(
+                          'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg',
+                        ),
+                        maxRadius: 16,
                       ),
-                      maxRadius: 16,
-                    ),
-                    title: Text(
-                      'Yeremia Christian C. O.',
-                      style: TextStyle(
-                        color: appColor.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                      title: Text(
+                        'Yeremia Christian C. O.',
+                        style: TextStyle(
+                          color: appColor.black,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
+                      onTap: () {},
                     ),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    leading: Icon(
-                      Icons.add
-                    ),
-                    title: Text(
-                      'Add Account',
-                      style: TextStyle(
-                        color: appColor.black,
-                        fontSize: 18,
+                    ListTile(
+                      leading: Icon(Icons.add),
+                      title: Text(
+                        'Add Account',
+                        style: TextStyle(color: appColor.black, fontSize: 18),
                       ),
+                      onTap: () {},
                     ),
-                    onTap: () {},
-                  ),
-                  Divider(
-                    color: appColor.lightGray,
-                    height: 1,
-                  ),
-                ]
-              ),
+                    Divider(color: appColor.lightGray, height: 1),
+                  ],
+                ),
               ListTile(
                 leading: Icon(
                   Icons.account_circle_outlined,
@@ -178,58 +164,34 @@ class _HomePageState extends State<HomePage> {
                 ),
                 title: Text(
                   'My Profile',
-                  style: TextStyle(
-                    color: appColor.black,
-                    fontSize: 18,
-                  ),
+                  style: TextStyle(color: appColor.black, fontSize: 18),
                 ),
-                onTap: (){},
+                onTap: () {},
               ),
-              Divider(
-                color: appColor.lightGray,
-                height: 1,
-              ),
+              Divider(color: appColor.lightGray, height: 1),
               ListTile(
-                leading: Icon(
-                  Icons.group_outlined,
-                  color: appColor.grey,
-                ),
+                leading: Icon(Icons.group_outlined, color: appColor.grey),
                 title: Text(
                   'New Group',
-                  style: TextStyle(
-                    color: appColor.black,
-                    fontSize: 18,
-                  ),
+                  style: TextStyle(color: appColor.black, fontSize: 18),
                 ),
-                onTap: (){},
+                onTap: () {},
               ),
               ListTile(
-                leading: Icon(
-                  Icons.person_2_outlined,
-                  color: appColor.grey,
-                ),
+                leading: Icon(Icons.person_2_outlined, color: appColor.grey),
                 title: Text(
                   'Contacts',
-                  style: TextStyle(
-                    color: appColor.black,
-                    fontSize: 18,
-                  ),
+                  style: TextStyle(color: appColor.black, fontSize: 18),
                 ),
-                onTap: (){},
+                onTap: () {},
               ),
               ListTile(
-                leading: Icon(
-                  Icons.phone_outlined,
-                  color: appColor.grey,
-                ),
+                leading: Icon(Icons.phone_outlined, color: appColor.grey),
                 title: Text(
                   'Calls',
-                  style: TextStyle(
-                    color: appColor.black,
-                    fontSize: 18,
-                  ),
+                  style: TextStyle(color: appColor.black, fontSize: 18),
                 ),
-                onTap: (){},
+                onTap: () {},
               ),
               ListTile(
                 leading: Icon(
@@ -238,71 +200,44 @@ class _HomePageState extends State<HomePage> {
                 ),
                 title: Text(
                   'Saved Messages',
-                  style: TextStyle(
-                    color: appColor.black,
-                    fontSize: 18,
-                  ),
+                  style: TextStyle(color: appColor.black, fontSize: 18),
                 ),
-                onTap: (){},
+                onTap: () {},
               ),
               ListTile(
-                leading: Icon(
-                  Icons.settings_outlined,
-                  color: appColor.grey,
-                ),
+                leading: Icon(Icons.settings_outlined, color: appColor.grey),
                 title: Text(
                   'Settings',
-                  style: TextStyle(
-                    color: appColor.black,
-                    fontSize: 18,
-                  ),
+                  style: TextStyle(color: appColor.black, fontSize: 18),
                 ),
-                onTap: (){},
+                onTap: () {},
               ),
-              Divider(
-                color: appColor.lightGray,
-                height: 1,
-              ),
+              Divider(color: appColor.lightGray, height: 1),
               ListTile(
-                leading: Icon(
-                  Icons.person_add_outlined,
-                  color: appColor.grey,
-                ),
+                leading: Icon(Icons.person_add_outlined, color: appColor.grey),
                 title: Text(
                   'Invite Friends',
-                  style: TextStyle(
-                    color: appColor.black,
-                    fontSize: 18,
-                  ),
+                  style: TextStyle(color: appColor.black, fontSize: 18),
                 ),
-                onTap: (){},
+                onTap: () {},
               ),
               ListTile(
-                leading: Icon(
-                  Icons.help_outline,
-                  color: appColor.grey,
-                ),
+                leading: Icon(Icons.help_outline, color: appColor.grey),
                 title: Text(
                   'Telegram Features',
-                  style: TextStyle(
-                    color: appColor.black,
-                    fontSize: 18,
-                  ),
+                  style: TextStyle(color: appColor.black, fontSize: 18),
                 ),
-                onTap: (){},
+                onTap: () {},
               ),
             ],
           ),
         ),
         body: ChatList(),
         floatingActionButton: FloatingActionButton(
-          onPressed: (){},
+          onPressed: () {},
           backgroundColor: appColor.primary,
           shape: CircleBorder(),
-          child: Icon(
-            Icons.edit,
-            color: appColor.white,
-          ),
+          child: Icon(Icons.edit, color: appColor.white),
         ),
       ),
     );

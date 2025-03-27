@@ -14,8 +14,11 @@ class AppColor {
   final linearGradientBlue = const LinearGradient(
     begin: Alignment.bottomRight,
     end: Alignment.topLeft,
-    colors: [Color.fromARGB(255, 128, 219, 247), Color.fromARGB(255, 196, 232, 255)],
-    stops: [0.0, 1.0]
+    colors: [
+      Color.fromARGB(255, 128, 219, 247),
+      Color.fromARGB(255, 196, 232, 255),
+    ],
+    stops: [0.0, 1.0],
   );
 
   /*
